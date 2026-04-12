@@ -37,4 +37,29 @@ function startGame() {
     renderPrompt(display, state.target, "");
 }
 
+function handleTick() {
+    if (!state.startTime) return;
 
+    const elapsed = Date.now() - state.startTime;
+
+    renderTimer(state.startTime);
+    renderStats({
+        wpm: calcWPM(state.typed.length, elapsed),
+        accuracy: calcAccuracy(state.totalTyped, state.errors),
+        errors: state.errors,
+    });
+}
+
+function finishRace() {
+    stopTicker();
+    input.disabled = true;
+    const elapsed = Date.now() - state.startTime;
+    renderProgress(100);
+    renderResult({
+        wpm: calcWPM(state.typed.length, elapsed),
+        accuracy: calcAccuracy(state.totalTyped, state.errors),
+        elapsedMs: elapsed,
+    });
+}
+
+// Event listeners
