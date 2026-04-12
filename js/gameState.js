@@ -43,3 +43,20 @@ export function processInput(state, rawVal) {
         didFinish,
     };
 }
+
+// Calculate WPM
+export function calcWPM(typedLength, elapsedMs) {
+    const mins = elapsedMs / 60000;
+
+    if (mins < 0.0001) {
+        return 0;
+    }
+
+    return Math.floor((typedLength / 5) / mins);
+}
+
+// Calculate accuracy percentage
+export function calcAccuracy(totalTyped, errors) {
+    if (totalTyped === 0) return 100;
+    return Math.round(((totalTyped - errors) / totalTyped) * 100);
+}
