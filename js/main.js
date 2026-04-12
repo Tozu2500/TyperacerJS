@@ -37,4 +37,3 @@ function startGame() {
     renderPrompt(display, state.target, "");
 }
 
-
