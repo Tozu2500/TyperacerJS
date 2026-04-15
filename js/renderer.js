@@ -6,7 +6,7 @@ export function renderPrompt(el, target, typed) {
     let html = "";
 
     for (let i = 0; i < target.length; i++) {
-        const ch = target[i] === " " ? "&nbsp;" : target[1];
+        const ch = target[i] === " " ? "&nbsp;" : target[i];
         if (i < typed.length) {
             if (typed[i] === target[i]) {
                 html += `<span class="char done">${ch}</span>`;
